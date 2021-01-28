@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | ddv的博客</title>
+  <title>raspberry | ddv的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ddv的博客">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="简单配置一下树莓派的环境，为后面做准备">
+<meta property="og:type" content="article">
+<meta property="og:title" content="raspberry">
+<meta property="og:url" content="http://example.com/2021/01/28/raspberry/index.html">
 <meta property="og:site_name" content="ddv的博客">
+<meta property="og:description" content="简单配置一下树莓派的环境，为后面做准备">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-28T11:27:54.000Z">
+<meta property="article:modified_time" content="2021-01-28T11:27:54.824Z">
 <meta property="article:author" content="Dtv">
-<meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+<meta property="article:tag" content="树莓派">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="ddv的博客" type="application/atom+xml">
@@ -133,36 +137,86 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-raspberry" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/28/raspberry/" class="archive-article-date">
-  	<time datetime="2021-01-28T11:27:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-28</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/28/raspberry/">raspberry</a>
+    <h1 class="article-title" itemprop="name">
+      raspberry
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/01/28/raspberry/" class="archive-article-date">
+  	<time datetime="2021-01-28T11:27:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简单配置一下树莓派的环境，为后面做准备</p>
+<a id="more"></a>
+<p>材料：</p>
+<ul>
+<li><p>树莓派</p>
+</li>
+<li><p>任意某支持HDMI的屏幕（为了使树莓派启动桌面，所以大小随意）</p>
+</li>
+<li><p>电脑</p>
+<p>OK，我们开始</p>
+<h1 id="烧录镜像"><a href="#烧录镜像" class="headerlink" title="烧录镜像"></a>烧录镜像</h1><p>选择的是树莓派官方的系统，<em>Raspbian</em> ，这里为了下载方便选择<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/raspbian/">清华开源软件镜像站</a>的镜像。使用SD card Formatter格式化SD卡。使用Etcher烧录镜像。</p>
+<h1 id="SD卡配置WIFI"><a href="#SD卡配置WIFI" class="headerlink" title="SD卡配置WIFI"></a>SD卡配置WIFI</h1></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/denglinzhe/p/12673824.html"> 参考这篇博客</a></p>
+<p>在路由器下找到树莓派的ip地址，记下来。</p>
+<h1 id="配置SSH与VNC"><a href="#配置SSH与VNC" class="headerlink" title="配置SSH与VNC"></a>配置SSH与VNC</h1><p> 在SD卡的文件根目录下创建一个ssh的文件，通过putty ssh连接树莓派。</p>
+<p> 输入</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
+<p>选择接口配置，开启VNC。</p>
+<p>连接显示设备重启树莓派。即可通过VNC连接树莓派桌面。</p>
+<h1 id="搭建远程VNC"><a href="#搭建远程VNC" class="headerlink" title="搭建远程VNC"></a>搭建远程VNC</h1><p>由于需要多人协作，因此考虑通过内网穿透将VNC端口映射到外网，选择协议为tcp协议。使得其他人可以通过这个端口访问树莓派桌面。</p>
+<p>完成这件事情我们需要一个内网穿透服务器，这个可以自己搭建或者借助某收费软件。</p>
+<h2 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h2><p>这里参考了[lcx的博客]（<a target="_blank" rel="noopener" href="https://blog.csdn.net/ElvesOfRivendell/article/details/113122708">https://blog.csdn.net/ElvesOfRivendell/article/details/113122708</a>)</p>
+<h2 id="VNC的端口映射"><a href="#VNC的端口映射" class="headerlink" title="VNC的端口映射"></a>VNC的端口映射</h2><p>VNC使用的本地端口为5900，所以就选择5900 ，映射到服务器某个未被占用的端口即可，类型选择tcp。即可远程登陆。</p>
+<p>参考<a target="_blank" rel="noopener" href="https://cnblogs.com/likai-abc/p/10792543.html">某博客</a></p>
+<h1 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h1><p>另外需要更换树莓派的源，加快下载速度。参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43336281/article/details/97373288">某博客</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/blogImg/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -174,95 +228,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/28/raspberry/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/26/todoList/" class="archive-article-date">
-  	<time datetime="2021-01-26T07:34:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/26/todoList/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">即将要做的一些事情</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/26/todoList/">即将要做的一些事情</a>
-    </h1>
+        
+        
+    </div>
+</aside>
+
+
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">to do list</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/24/myfirstPost/" class="archive-article-date">
-  	<time datetime="2021-01-24T02:24:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/24/myfirstPost/">第一篇博客啦~</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常记录</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -285,8 +350,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
